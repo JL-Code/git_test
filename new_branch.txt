@@ -2,3 +2,4 @@ new branch
 新分支代码2019年10月01日14:46:19
 hello new_branch 2019年10月01日14:50:43
 hello 第四行文本用于模拟 git merge 时冲
+冲突修改
