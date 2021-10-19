@@ -17,13 +17,27 @@ echo "参数1：${1-无}"
 
 # 参数：branch、tag
 function git_release() {
+
+  echo "==========release prepare==========="
   echo "所有的参数："$@
   echo "当前所在分支："$(git status)
   echo "切换到分支："$1
   echo "TAG："$2
   git checkout $1
   git status
-}
 
+  echo "==========release start==========="
+  git checkout master && git pull && git merge $1
+  git checkout develop && git pull && git merge $1
+
+  git tag $2
+  echo "TAG 列表："$(git tag)
+
+  git push origin $2
+  git push
+
+  echo "==========release finished==========="
+  git status
+}
 
 git_release 'release/1.0.0-release' 'v1.0.0.001'
